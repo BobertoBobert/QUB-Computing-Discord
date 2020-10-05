@@ -14,7 +14,7 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
-switch
+
     if (message.author.bot) return;
 
     // If the message is "ping"
