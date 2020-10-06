@@ -66,7 +66,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
             // and that it has not already been sent into the notes channel. We will react to 
             // messages that have been processed  with our own reaction to mark them as having 
             // been processed. ALso makes sure message was not moved with command
-            if (messageReaction.count <3 || messageReaction.me || messageReaction.message.content.toLowerCase.startsWith(`${config.prefix}addnote`)){
+            if (messageReaction.count <3 || messageReaction.me || messageReaction.message.content.toLowerCase().startsWith(`${config.prefix}addnote`)){
                 return;
             }
             messageReaction.message.react('🗒️');
