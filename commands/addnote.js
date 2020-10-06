@@ -1,8 +1,16 @@
-exports.run = (client, message, args) => {
-	// combining all output into one message allows us to bypass rate limiters
-	let output = '';
-    let targetChannel = client.channels.get('755400893175955548');
-    output += message.content;
+const channelFinder = require('../channelFinder.js')
 
-    targetChannel.send("test");
+module.exports = {
+	name: 'addnote',
+	description: 'Marks a message as a note to be sent and sends it to the notes channel',
+	execute(message, args) {
+        let targetChannelID = channelFinder.execute(message.channel.id);
+
+        let messageWithoutCommand = message.content.slice(9);
+        
+        let targetChannel = message.client.channels.cache.get(targetChannelID)
+
+        let credit = `Notes provided by ${message.author}\n\n`;
+        targetChannel.send(credit + messageWithoutCommand);
+	},
 };
