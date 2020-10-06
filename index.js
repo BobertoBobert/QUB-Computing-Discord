@@ -63,11 +63,15 @@ client.on('message', message => {
 client.on('messageReactionAdd', (messageReaction, user) => {
     if (messageReaction.emoji.name == '🗒️') {
         let targetChannelID = channelFinder.execute(messageReaction.message.channel.id);
-        console.log('Correct reaction');
-        console.log(targetChannelID);
-        let targetChannel = client.channels.cache.get(targetChannelID);
+        try {
+            console.log('Correct reaction');
+            console.log(targetChannelID);
+            let targetChannel = client.channels.cache.get(targetChannelID);
 
-        targetChannel.send(messageReaction.message.content);
+            targetChannel.send(messageReaction.message.content);
+        } catch(error){
+            console.error(error);
+        }
     }
 })
 
