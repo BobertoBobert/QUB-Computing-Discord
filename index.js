@@ -43,7 +43,7 @@ client.on('message', message => {
 
     //If the commandName doesn't match any prewritten command, exit
     if (!client.commands.has(commandName)) {
-        console.log(`${command.name} is not a command`);
+        console.log(`${commandName} is not a command`);
         return;
     }
 
@@ -59,16 +59,32 @@ client.on('message', message => {
 });
 
 
-
+// When a message is reacted to, check that if reaction is the notebook emoji
 client.on('messageReactionAdd', (messageReaction, user) => {
     if (messageReaction.emoji.name == '🗒️') {
+            // Before do anything, verify that there have been at least 3 reactions to the message
+            // and that it has not already been sent into the notes channel. We will react to 
+            // messages that have been processed  with our own reaction to mark them as having 
+            // been processed. ALso makes sure message was not moved with command
+            if (messageReaction.count <3 || messageReaction.me || messageReaction.message.content.toLowerCase.startsWith(`${config.prefix}addnote`)){
+                return;
+            }
+            messageReaction.message.react('🗒️');
+
+
+            //check the target id using the id of the current channel
+
         let targetChannelID = channelFinder.execute(messageReaction.message.channel.id);
+
+        //try catch to make sure the channel is valid
         try {
             console.log('Correct reaction');
             console.log(targetChannelID);
             let targetChannel = client.channels.cache.get(targetChannelID);
 
-            targetChannel.send(messageReaction.message.content);
+            let credit = `Notes provided by ${messageReaction.message.author}\n\n`;
+            targetChannel.send(credit + messageReaction.message.content);
+
         } catch(error){
             console.error(error);
         }
