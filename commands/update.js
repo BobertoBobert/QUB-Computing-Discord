@@ -8,12 +8,12 @@ module.exports = {
 			message.channel.send("Running git fetch on bot!")
 			
 			// run git fetch script
-			child_process.exec('sh gitfetch.sh', (error, stdout) => {
+			child_process.exec('sh /bot-files/gitfetch.sh', (error, stdout) => {
 				if (error) {
 					console.error(`Exec error: ${error}`)
 				}
 				console.log(`stdout: ${stdout}`);
-				message.channel.send("Success! Restarting...").then(() => client.destroy()).then((client) => client.login(client.config.token));
+				message.channel.send("Success! Restarting...").then(msg => client.destroy(3001)).then(() => client.login(client.config.token));
 			})
 		} else if (args[0]=="node") {
 
