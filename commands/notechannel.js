@@ -44,6 +44,7 @@ module.exports = {
         console.log(jsonString);
         fs.writeFileSync('./channels.json', jsonString);
 
+        message.reply('Link created');
 
     },
 };
