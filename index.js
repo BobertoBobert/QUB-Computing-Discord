@@ -10,12 +10,6 @@ client.config = config;
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-//refine console.log to catch logs and print them to discord channel
-console.log() = (text) => {
-    process.stdout.write(text.toString())
-    client.channels.get('763414067678937129').send(text)
-}
-
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
 
@@ -25,7 +19,16 @@ for (const file of commandFiles) {
     console.log(`${command.name} ready`)
 }
 
+//refine console.log to catch logs and print them to discord channel
+console.log = (text) => {
+    process.stdout.write(text.toString())
+    client.channels.cache.get(`763414067678937129`).send("Log: \n```" + text)
+}
 
+console.error = (text) => {
+    process.stdout.write("ERROR: " + text.toString())
+    client.channels.cache.get(`763414067678937129`).send("ERROR: \n```" + text)
+}
 
 client.on('ready', () => {
     console.log('I am ready!');
