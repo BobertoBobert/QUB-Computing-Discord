@@ -10,6 +10,27 @@ client.config = config;
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
+//refine console.log to catch logs and print them to discord channelvar console = (function(oldCons){
+var console = (function(oldCons) {
+    return {
+        log: function(text){
+            oldCons.log(text);
+            client.channels.get(`763414067678937129`).send("Log: \n" + text)
+        },
+        info: function (text) {
+            oldCons.info(text);
+            client.channels.get(`763414067678937129`).send("Info: \n" + text)
+        },
+        warn: function (text) {
+            oldCons.warn(text);
+            client.channels.get(`763414067678937129`).send("Warning: \n" + text)
+        },
+        error: function (text) {
+            oldCons.error(text);
+            client.channels.get(`763414067678937129`).send("ERROR: \n" + text)
+        }
+    };
+});
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
