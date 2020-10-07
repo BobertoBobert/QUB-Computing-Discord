@@ -13,7 +13,7 @@ module.exports = {
 					console.error(`Exec error: ${error}`)
 				}
 				console.log(`stdout: ${stdout}`);
-				message.channel.send("Success! Restarting...").then(msg => client.destroy(3001)).then(() => client.login(client.config.token)).then(() => message.channel.send("Restarted!"));
+				message.channel.send("Success! Restarting...").then(() => process.exit())
 			})
 		} else if (args[0]=="node") {
 
