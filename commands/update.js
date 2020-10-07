@@ -13,11 +13,11 @@ module.exports = {
 					console.error(`Exec error: ${error}`)
 				}
 				console.log(`stdout: ${stdout}`);
-				message.channel.send("Success! Restarting...").then(msg => client.destroy(3001)).then(() => client.login(client.config.token));
+				message.channel.send("Success! Restarting...").then(msg => client.destroy(3001)).then(() => client.login(client.config.token)).then(() => message.channel.send("Restarted!"));
 			})
 		} else if (args[0]=="node") {
 
-			message.channel.send("Node install request detected!")
+			message.channel.send("Node install request detected! (Node install disabled)")
 			// message.channel.send("Running git fetch before updating node modules");
 
 			// // run git fetch script
