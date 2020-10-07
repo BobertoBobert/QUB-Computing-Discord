@@ -6,9 +6,9 @@ module.exports = {
             message.channel.send("Stopping node...").then(() => {
                 process.exit()})
         } else if (args[0]==null) {
-            message.channel.send("Incorrect arguments!")
-        } else {
             message.channel.send("Restarting bot...").then(msg => client.destroy(3001)).then(() => client.login(client.config.token)).then(() => message.channel.send("Restarted!"));
+        } else {
+            message.channel.send("Incorrect arguments!")
         }
 	},
 };
