@@ -42,8 +42,6 @@ client.on('message', message => {
         return;
     }
 
-    console.log('had prefix');
-
     // This piece of string manipulation removes the prefix and whitespace, and then splits the command into an array of arguments by spaces
     const args = message.content.slice(config.prefix.length).trim().split(' ');
     // This removes the command name from the array, and sets it as its own variable
@@ -86,7 +84,6 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 
         //try catch to make sure the channel is valid
         try {
-            console.log('Correct reaction');
             console.log(targetChannelID);
             let targetChannel = client.channels.cache.get(targetChannelID);
 
