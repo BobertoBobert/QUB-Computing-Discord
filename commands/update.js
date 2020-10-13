@@ -3,6 +3,7 @@ const child_process = require('child_process');
 module.exports = {
 	name: 'update',
 	description: 'Runs one or both of 2 bash scripts, either just fetching the master repo branch or also updating node modules',
+	roles: ['Bot Dev'],
 	execute(message, args, client) {
 		if (args[0]=="fetch" || args[0]==null) {
 			message.channel.send("Running git fetch on bot!")
