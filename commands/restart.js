@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'restart',
-	description: 'Restarts bot, or with node arg stops the node process to be restarted fully',
+    description: 'Restarts bot, or with node arg stops the node process to be restarted fully',
+    roles: ['Moderators','Bot Dev'],
 	execute(message, args, client) {
 		if (args[0]=="node") {
             message.channel.send("Stopping node...").then(() => {
