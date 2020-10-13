@@ -67,7 +67,6 @@ client.on('message', message => {
     if (!(command.roles === undefined || message.member.roles.cache.some(role => {
         let isAllowed = false;
         for (i = 0; i < command.roles.length; i++) {
-            console.log(command.roles[i] + role.name)
             if (command.roles[i] === role.name) {
                 isAllowed = true;
             }
