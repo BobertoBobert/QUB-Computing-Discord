@@ -5,9 +5,9 @@ module.exports = {
         if (args.length == 0) {
             let returnString = 'Here are available commands: \`\`\`';
             client.commands.each(command => {
-                returnString += `${command.name}\n`
+                returnString += `\n${command.name}`
             })
-            returnString += '\`\`\`';
+            returnString += '\n\`\`\`';
             message.channel.send(returnString);
             return;
         }
