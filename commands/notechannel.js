@@ -3,6 +3,7 @@ const fs = require('fs');
 module.exports = {
     name: 'notechannel',
     description: 'Takes 3 arguments. The source, the target, and the label. When you run it, it allows the addnote command to be run in the source to transfer notes to the target',
+    roles: ['Moderators'],
     execute(message, args) {
         //ensure there are enough arguments
         if (args.length < 3) {
