@@ -10,6 +10,10 @@ module.exports = {
         
         let targetChannel = message.client.channels.cache.get(targetChannelID)
 
+        message.attachments.each(image => {
+                messageWithoutCommand += '\n' + image.url;
+        })
+
         let credit = `Notes provided by ${message.author}\n\n`;
         targetChannel.send(credit + messageWithoutCommand);
 	},
