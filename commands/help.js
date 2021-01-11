@@ -3,7 +3,12 @@ module.exports = {
     description: 'When a command is passed as an argument, it will print the description',
     execute(message, args, client) {
         if (args.length == 0) {
-            message.channel.send('Here are available commands: ');
+            let returnString = 'Here are available commands: \`\`\`';
+            client.commands.each(command => {
+                returnString += `${command.name}\n`
+            })
+            returnString += '\`\`\`';
+            message.channel.send(returnString);
             return;
         }
 
@@ -12,9 +17,9 @@ module.exports = {
             return;
         }
 
-        const command = client.commands.get(args[0]); 
-        message.channel.send(`${command.name} description\n\`\`\`${command.description}\`\`\`` );
-           
+        const command = client.commands.get(args[0]);
+        message.channel.send(`${command.name} description\n\`\`\`${command.description}\`\`\``);
+
 
     },
 };
