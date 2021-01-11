@@ -43,8 +43,9 @@ client.on('ready', () => {
 client.on('message', message => {
 
     //If the server is locked and the author is not a bot, delete the message
-    if (message.guild.serverLocked && !message.author.bot) {
+    if (message.guild.serverLocked && !message.author.bot && !message.member.roles.cache.some(role => role.name == "Moderators")) {
         message.delete();
+        return;
     }
 
     //checks if the message was sent by a bot or does not contain a prefix. 
