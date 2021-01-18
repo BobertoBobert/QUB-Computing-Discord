@@ -19,23 +19,34 @@ for (const file of commandFiles) {
     console.log(`${command.name} ready`)
 }
 
-//refine console.log to catch logs and print them to discord channel
+/*//refine console.log to catch logs and print them to discord channel
 console.log = (text) => {
     process.stdout.write(text.toString())
     client.channels.cache.get(`763414067678937129`).send("**Log:** \n```" + text + "```")
-}
+}*/
 
 console.error = (text) => {
     process.stdout.write("ERROR: " + text.toString())
-    client.channels.cache.get(`763414067678937129`).send("**ERROR:** \n```" + text + "```")
+    client.channels.cache.get(`800740758574334002`).send("**ERROR:** \n```" + text + "```")
 }
 
 client.on('ready', () => {
+    //Set all servers to be unlocked when starting the bot
+    client.guilds.cache.each(guild => {
+        guild.serverLocked = false;
+    });
+
     console.log('I am ready!');
 });
 
 //when a message is recieved, this will run
 client.on('message', message => {
+
+    //If the server is locked and the author is not a bot, delete the message
+    if (message.guild.serverLocked && !message.author.bot && !message.member.roles.cache.some(role => role.name == "Moderators")) {
+        message.delete();
+        return;
+    }
 
     //checks if the message was sent by a bot or does not contain a prefix. 
     //In either of these cases it will then return without doing anything. 

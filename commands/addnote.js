@@ -2,7 +2,7 @@ const channelFinder = require('../channelFinder.js')
 
 module.exports = {
 	name: 'addnote',
-	description: 'Marks a message as a note to be sent and sends it to the notes channel',
+	description: 'Marks the message it is in as a note and sends it to the notes channel',
 	execute(message, args, client) {
         let targetChannelID = channelFinder.execute(message.channel.id);
 

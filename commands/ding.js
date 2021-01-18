@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'ding',
-	description: 'Dong!',
-	roles: ['Moderators'],
+	description: 'Prints "Dong!"',
+    roles: ['Moderators','Bot Dev'],
 	execute(message, args, client) {
 		message.channel.send('Dong!');
 	},
