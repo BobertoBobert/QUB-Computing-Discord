@@ -1,7 +1,7 @@
 module.exports = {
     name: 'lockdown',
     description: 'Locks the server until a moderator sends in the command again',
-    roles: ['Moderators', 'Bot Dev'],
+    roles: ['Mod', 'Bot Dev'],
     execute(message, args, client) {
         const server = message.guild;
         server.serverLocked = !server.serverLocked;
